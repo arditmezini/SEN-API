@@ -1,0 +1,20 @@
+{
+  "name": "sen-api",
+  "version": "1.0.0",
+  "description": "Sql Server Express.js and Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": {
+    "name": "Ardit Mezini",
+    "email": "mezini.ardit@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "body-parser": "^1.19.0",
+    "mssql": "^5.1.0",
+    "cors": "^2.8.5"
+  }
+}
