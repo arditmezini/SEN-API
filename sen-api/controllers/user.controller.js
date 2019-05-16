@@ -3,20 +3,20 @@ var express = require('express');
 var router = express.Router();
 
 //GET 
-router.get("/user", function(req, res){
+router.get("", function(req, res){
     var query = "SELECT * FROM [User]";
     executeQuery(res,query);
 });
 
 //POST
-router.post("/user", function(req, res){
+router.post("", function(req, res){
     var query = `INSERT INTO [User](Name, Email, Password)
     VALUES (${req.body.Name}, ${req.body.Email},${req.body.Password})`;
     executeQuery(res,query);
 });
 
 //PUT
-router.put("/user/:id", function(req, res){
+router.put("/:id", function(req, res){
     var query = `UPDATE [User]
                  SET Name = ${req.body.Name},
                      Email = ${req.body.Email},
@@ -26,7 +26,7 @@ router.put("/user/:id", function(req, res){
 });
 
 //DELETE
-router.delete("/user/:id",function(req, res){
+router.delete("/:id",function(req, res){
     var query = `DELETE FROM [User] WHERE Id = ${req.params.id}`;
     executeQuery(res, query);
 });

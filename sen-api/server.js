@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //cors middleware
 app.use(cors());
 
-app.use('', user);
+app.use('/user', user);
 
 //setting up server
 var server = app.listen(config.server.port, function(){
