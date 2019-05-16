@@ -18,7 +18,8 @@ var executeQuery = function(res, query){
                     res.send(resp);
                 }
                 else {
-                    res.send(resp.recordsets);
+                    resp.recordsets = [].concat(...resp.recordsets);
+                    res.send(resp);
                 }
                 sql.close(); 
             });

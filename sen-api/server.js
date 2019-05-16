@@ -9,6 +9,7 @@ var app = express();
 var user = require('./controllers/user.controller.js')
 
 //body parser middleware
+app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
 //cors middleware
