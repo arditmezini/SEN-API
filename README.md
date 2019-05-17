@@ -7,4 +7,7 @@ Simple API build in [Nodejs](https://nodejs.org/), [Express](https://expressjs.c
 
 ## To run the app:
 > npm install  
-> node server.js
+> and  
+> npm run dev (node monitor watching changes and restart server)  
+> or  
+> npm run start
