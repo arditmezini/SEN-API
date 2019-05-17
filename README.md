@@ -1,5 +1,7 @@
-# SEN-API
+# SEN-API 
 Simple API build in [Nodejs](https://nodejs.org/), [Express](https://expressjs.com/) and [SQL Server](https://www.npmjs.com/package/mssql) database.
+
+##Work in progress...
 
 ## Before running the api:
 > run the script inside the folder scripts sql (create database and table)  
