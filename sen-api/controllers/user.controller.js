@@ -1,6 +1,7 @@
-var executeQuery = require('../helper/queryHelper.js');
-var express = require('express');
-var router = express.Router();
+const executeQuery = require('../helper/queryHelper.js');
+const express = require('express');
+const router = express.Router();
+const { check, validationResult } = require('express-validator/check');
 
 //GET 
 router.get("", function(req, res){
@@ -9,25 +10,47 @@ router.get("", function(req, res){
 });
 
 //POST
-router.post("", function(req, res){
+router.post("",[
+    check("Name").isString().isLength({ min : 3, max: 50}),
+    check("Email").isEmail(),
+    check("Passoword").isLength({ min:6 , max: 50})
+], function(req, res){
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    const { Name, Email, Password } = req.body;
     var query = `INSERT INTO [User](Name, Email, Password)
-    VALUES (${req.body.Name}, ${req.body.Email},${req.body.Password})`;
+    VALUES (${Name}, ${Email},${Password})`;
     executeQuery(res,query);
 });
 
 //PUT
-router.put("/:id", function(req, res){
+router.put("/:id",[
+    check("Name").isString().isLength({ min : 3, max: 50}),
+    check("Email").isEmail(),
+    check("Passoword").isLength({ min:6 , max: 50})
+], function(req, res){
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+
+    const { Name, Email, Password } = req.body;
+    const { id } = req.params.id;
     var query = `UPDATE [User]
-                 SET Name = ${req.body.Name},
-                     Email = ${req.body.Email},
-                     Password = ${req.body.Password}
-                 WHERE Id = ${req.params.id}`;
+                 SET Name = ${Name},
+                     Email = ${Email},
+                     Password = ${Password}
+                 WHERE Id = ${id}`;
     executeQuery(res,query);
 });
 
 //DELETE
 router.delete("/:id",function(req, res){
-    var query = `DELETE FROM [User] WHERE Id = ${req.params.id}`;
+    const { id } = req.params.id; 
+    var query = `DELETE FROM [User] WHERE Id = ${id}`;
     executeQuery(res, query);
 });
 
