@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const expressValidator = require('express-validator')
 
+const API_ENTRYPOINT = '/api/';
+
 //body parser middleware
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
@@ -16,6 +18,6 @@ app.use(expressValidator())
 
 //controllers
 var userCtrl = require('./controllers/user.controller.js')
-app.use('/user', userCtrl);
+app.use( API_ENTRYPOINT + 'user', userCtrl);
 
 module.exports = app;

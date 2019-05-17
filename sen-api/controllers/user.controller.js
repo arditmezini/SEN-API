@@ -1,7 +1,7 @@
 const executeQuery = require('../helper/queryHelper.js');
+const validateUser = require("../validations/user.validation.js");
 const express = require('express');
 const router = express.Router();
-const { check, validationResult } = require('express-validator/check');
 
 //GET 
 router.get("", function(req, res){
@@ -10,11 +10,7 @@ router.get("", function(req, res){
 });
 
 //POST
-router.post("",[
-    check("Name").isString().isLength({ min : 3, max: 50}),
-    check("Email").isEmail(),
-    check("Passoword").isLength({ min:6 , max: 50})
-], function(req, res){
+router.post("", validateUser.operation.create_user, function(req, res){
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
@@ -27,11 +23,7 @@ router.post("",[
 });
 
 //PUT
-router.put("/:id",[
-    check("Name").isString().isLength({ min : 3, max: 50}),
-    check("Email").isEmail(),
-    check("Passoword").isLength({ min:6 , max: 50})
-], function(req, res){
+router.put("/:id", validateUser.operation.update_user, function(req, res){
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
@@ -48,7 +40,7 @@ router.put("/:id",[
 });
 
 //DELETE
-router.delete("/:id",function(req, res){
+router.delete("/:id", validateUser.operation.delete_user, function(req, res){
     const { id } = req.params.id; 
     var query = `DELETE FROM [User] WHERE Id = ${id}`;
     executeQuery(res, query);
