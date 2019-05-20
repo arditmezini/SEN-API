@@ -19,7 +19,7 @@ GO
 -- Create the table in the specified schema
 CREATE TABLE [User]
 (
-    Id INT NOT NULL PRIMARY KEY, -- primary key column
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY, -- primary key column
     Name [NVARCHAR](50) NOT NULL,
     Email [NVARCHAR](50) NOT NULL,
     Password [NVARCHAR](50) NOT NULL
