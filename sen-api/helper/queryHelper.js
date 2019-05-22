@@ -2,8 +2,10 @@ var env = process.env.NODE_ENV || "dev";
 var config = require('../config')[env];
 var sql = require("mssql");
 
-var executeQuery = function(res, query){     
-    sql.connect(config.database , function (err) {
+module.exports = executeQuery;
+
+async function executeQuery(res, query){     
+    await sql.connect(config.database , function (err) {
         if (err) {   
             console.log("Error while connecting database :- " + err);
             res.send(err);
@@ -26,5 +28,3 @@ var executeQuery = function(res, query){
         }
     });      
 }
-
-module.exports = executeQuery;
