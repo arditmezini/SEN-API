@@ -48,7 +48,7 @@ async function update(req, res){
                 .json({ status: 200, message: "Succesfully updated user"});
         } catch(e) {
             return res.status(400)
-                .json({ status: 400, message: "User udpdate failed"});
+                .json({ status: 400, message: "User update failed"});
         }
     } else {
         return res.status(422)
@@ -62,7 +62,7 @@ async function deleteUser (req, res){
         try {
             await userService.deleteUser(req);
             return res.status(201)
-                .json({ status: 200, message: "Succesgully deleted user"});
+                .json({ status: 200, message: "Succesfully deleted user"});
         } catch(e) {
             return res.status(400)
                 .json({ status: 400, message: "User delete failed"});

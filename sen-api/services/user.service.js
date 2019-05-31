@@ -41,7 +41,6 @@ async function updateUser(req) {
     } catch(e) {
         throw Error("Error while updating user...");
     }
-    
 }
 
 async function deleteUser(req) {
