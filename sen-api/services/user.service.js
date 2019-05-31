@@ -1,5 +1,4 @@
-const executeQuery = require('../helper/queryHelper.js');
-const { validationResult } = require("express-validator/check");
+const sql = require('../helper/queryHelper.js');
 
 module.exports = {
     getAllUsers,
@@ -8,40 +7,32 @@ module.exports = {
     deleteUser
 }
 
-async function getAllUsers(res) {
-    var query = "SELECT * FROM [dbo].[User]";
-    await executeQuery(res,query);
+async function getAllUsers() {
+    return await sql("SELECT * FROM [dbo].[User]").then(data => {
+        return data;
+    });
 }
 
 async function createUser(req, res) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
     const { Name, Email, Password } = req.body;
-    var query = `INSERT INTO [dbo].[User] (Name, Email, Password)
-    VALUES ('${Name}',' ${Email}','${Password}')`;
-    await executeQuery(res,query);
+    return await sql("INSERT INTO [dbo].[User] (Name, Email, Password) VALUES (@name, @email, @password)",
+        { name: Name, email: Email, password: Password}).then(data => {
+            return data;
+    })
 }
 
 async function updateUser(req, res) {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
-
     const { Name, Email, Password } = req.body;
     const id = req.params.id;
-    var query = `UPDATE [dbo].[User]
-                 SET Name = '${Name}',
-                     Email = '${Email}',
-                     Password = '${Password}'
-                 WHERE Id = '${id}'`;
-    await executeQuery(res,query);
+    return await sql("UPDATE [dbo].[User] SET Name = @name, Email = @email, Password = @password WHERE Id = @id",
+        { name: Name, email: Email, password: Password, id: id}).then(data => {
+            return data;
+        })
 }
 
 async function deleteUser(req, res) {
-    const id = req.params.id; 
-    var query = `DELETE FROM [dbo].[User] WHERE Id = ${id}`;
-    await executeQuery(res, query);
+    const id = req.params.id;
+    return await sql("DELETE FROM [dbo].[User] WHERE Id = @id", { id: id}).then(data => {
+        return data;
+    })
 }
