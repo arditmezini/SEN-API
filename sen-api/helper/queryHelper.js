@@ -22,7 +22,10 @@ module.exports = async function(query, params) {
 	Object.keys(params).forEach(key => {
 		req.input(key, params[key]);
 	})
-		
+	
+	//console.log(params);
+	//console.log(query);
+	
 	return await req.query(query).then(result => {
 		return result.recordset;
 	}).catch(err => {

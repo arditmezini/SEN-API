@@ -9,6 +9,11 @@ var config = {
         },
         server:{
             port:8080
+        },
+        jwt:{
+            secretKey:"SuPeRsEcReTcOdE123",
+            saltLength:15,
+            expireIn: 86400 //24h
         }
     },
     prod:{
@@ -20,6 +25,11 @@ var config = {
         },
         server:{
             port:8080
+        },
+        jwt:{
+            secretKey:"",
+            saltLength:15,
+            expireIn: 86400 //24h
         }
     }
 };

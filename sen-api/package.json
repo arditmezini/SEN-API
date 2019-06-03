@@ -18,7 +18,9 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
-    "mssql": "^5.1.0"
+    "mssql": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"

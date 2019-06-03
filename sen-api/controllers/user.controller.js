@@ -1,14 +1,16 @@
-const validateUser = require("../validations/user.validation.js");
+const operation = require("../validations/user.validation.js").operation;
 const userService = require('../services/user.service.js');
 const validateRequest = require('../helper/validationHelper.js');
+const authorization = require('../common/authorization.js');
 const express = require('express');
 const router = express.Router();
 
 // User API
-router.get("", getAll);
-router.post("", validateUser.operation.create_user, create);
-router.put("/:id", validateUser.operation.update_user, update);
-router.delete("/:id", validateUser.operation.delete_user, deleteUser);
+router.get("", authorization, getAll);
+router.post("", operation.create_user, create);
+router.post("/login", operation.login_user, login);
+router.put("/:id", operation.update_user, update);
+router.delete("/:id", operation.delete_user, deleteUser);
 module.exports = router;
 
 async function getAll(req, res){
@@ -26,9 +28,9 @@ async function create(req, res){
     var [isValid, errors] = validateRequest(req, res);
     if(isValid){
         try {
-            await userService.createUser(req);
+            var user = await userService.createUser(req);
             return res.status(201)
-                .json({ status: 200, message: "Succesfully created user"});
+                .json({ token: user, message: "Succesfully created user"});
         } catch (e) {
             return res.status(400)
                 .json({ status: 400, message: "User creation failed"});
@@ -36,6 +38,23 @@ async function create(req, res){
     } else{
         return res.status(422)
             .json({ status:422, errors : errors, message: "User creation failed validation"});
+    }
+};
+
+async function login(req, res){
+    var [isValid, errors] = validateRequest(req, res);
+    if (isValid) {
+        try {
+            var user = await userService.loginUser(req);
+            return res.status(201)
+                .json({ token: user, message: "User succesfully login"})
+        } catch (error) {
+            return res.status(400)
+                .json({ status: 400, message: "User login failed"});
+        }
+    } else {
+        return res.status(400)
+            .json({ status: 400, errors: errors, message: "User login failed validation"});
     }
 };
 
