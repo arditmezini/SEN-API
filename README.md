@@ -26,7 +26,7 @@ Simple API build in [Nodejs](https://nodejs.org/), [Express](https://expressjs.c
     
     Response Object
     {
-    	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTU5NTYxNDc2LCJleHAiOjE1NTk2NDc4NzZ9.vgjkGT2Do1D1y7mrzXWMPT3ENOBlJOZVeekeksWTf-Q"
+    	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTU5NTYxNDc2LCJleHAiOjE1NTk2NDc4NzZ9.vgjkGT2Do1D1y7mrzXWMPT3ENOBlJOZVeekeksWTf-Q",
         "message":"Succesfully created user"
     }
 	```
@@ -40,8 +40,8 @@ Simple API build in [Nodejs](https://nodejs.org/), [Express](https://expressjs.c
     
     Response Object
     {
-    	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTU5NTYxNDc2LCJleHAiOjE1NTk2NDc4NzZ9.vgjkGT2Do1D1y7mrzXWMPT3ENOBlJOZVeekeksWTf-Q"
-        "message":"User succesfully login"
+    	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTU5NTYxNDc2LCJleHAiOjE1NTk2NDc4NzZ9.vgjkGT2Do1D1y7mrzXWMPT3ENOBlJOZVeekeksWTf-Q",
+        "message": "User succesfully login"
     }
     ```
 3. Access a protected route: (GET - http://localhost:8080/api/user)
