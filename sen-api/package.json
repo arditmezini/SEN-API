@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^2.3.0",
+    "body-parser": "^2.4.0",
     "cors": "^2.8.5",
     "express": "^5.2.1",
     "express-validator": "^6.14.0",
